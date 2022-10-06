@@ -63,17 +63,20 @@ function game(){
         const computerSelect = getComputerChoice();
 
         console.log(playRound(playerSelect,computerSelect));
+
         if(playRound(playerSelect,computerSelect) === "You Rock! Rock beats Scissors" || playRound(playerSelect,computerSelect) === "That's a Wrap! Paper beats Rock" || playRound(playerSelect,computerSelect) === "Cut! Scissors beats Paper")
         {
             playerScore +=1;
         }
         else if(playRound(playerSelect,computerSelect) === "You Lose! Paper beats Rock" || playRound(playerSelect,computerSelect) === "You Lose! Scissors beats Paper" || playRound(playerSelect,computerSelect) === "You Lose! Rock beats Scissors")
         {
-            compScore +=1
+            compScore +=1;
         }
+
         console.log("Player:",playerScore);
         console.log("Computer:",compScore); 
     }
+    
     if (playerScore > compScore){
         return("The Player WINS!");
     } 
@@ -82,6 +85,6 @@ function game(){
     }
 
     else{
-        return("The game ended in a DRAW!")
+        return("The game ended in a DRAW!");
     }
 }
