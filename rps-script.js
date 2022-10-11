@@ -14,6 +14,84 @@ function getComputerChoice (){
     return choice;
 }
 
+function playRound(playerSelect,computerSelect) {
+    let result;
+    if( playerSelect == "rock" && computerSelect == "paper"){
+        result = "You Lose! Paper beats Rock";
+    }
+
+    else if(playerSelect == "rock" && computerSelect == "rock"){
+        result = "Rock Draw!";  
+    }
+
+    else if(playerSelect == "rock" && computerSelect == "scissors"){
+        result = "You Rock! Rock beats Scissors";
+    }
+
+    else if(playerSelect == "paper" && computerSelect == "paper"){
+        result ="Paper Draw!";
+    }
+
+    else if(playerSelect == "paper" && computerSelect == "rock"){
+        result = "That's a Wrap! Paper beats Rock";
+    }
+
+    else if(playerSelect == "paper" && computerSelect == "scissors"){
+        result = "You Lose! Scissors beats Paper";
+    }
+
+    else if(playerSelect == "scissors" && computerSelect == "paper"){
+        result = "Cut! Scissors beats Paper";
+    }
+
+    else if(playerSelect == "scissors" && computerSelect == "rock"){
+       result = "You Lose! Rock beats Scissors";
+    }
+
+    else if (playerSelect == "scissors" && computerSelect == "scissors"){
+        result = "Scissors Draw!";
+    }
+
+    else{
+        alert("Something went wrong...")
+        console.log(playerSelect);
+        console.log(getComputerChoice());
+        }
+    return result;
+};
+
+
+
+const container = document.querySelector('#container');
+
+const div = document.createElement('div');
+const playerScore = document.createElement('p');
+playerScore.textContent = 'Player: ';
+
+const compScore = document.createElement('p');
+compScore.textContent = 'Computer: ';
+
+const result = document.createElement('h3');
+result.textContent= 'Match Results: '
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) =>{
+    button.addEventListener('click',function (){
+        let win = 0;
+        let lose = 0;
+        playRound(button.id,getComputerChoice());
+        result.textContent= 'Match Results: '+ playRound(button.id,getComputerChoice());
+
+    });
+});
+
+div.appendChild(playerScore);
+div.appendChild(compScore);
+div.appendChild(result);
+container.appendChild(div);
+
+
+//Old Code
 /*function playRound(playerSelect,computerSelect){
     if(playerSelect.toLowerCase() === "rock" && computerSelect === "paper"){
         return("You Lose! Paper beats Rock");
@@ -53,9 +131,9 @@ function getComputerChoice (){
     else{
         return("Invalid Choice! You Lose!");
     }
-}*/
+}
 
-/*function game(){
+function game(){
     let playerScore = 0;
     let compScore = 0;
     for(let i = 0;i<5;i++){
@@ -90,54 +168,5 @@ function getComputerChoice (){
         return("The game ended in a DRAW!");
     }
 }*/
-
-
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) =>{
-    button.addEventListener('click', function playRound() {
-        if(button.id == "rock" && getComputerChoice() == "paper"){
-            console.log("You Lose! Paper beats Rock");
-        }
-    
-        else if(button.id == "rock" && getComputerChoice() == "rock"){
-                console.log("Rock Draw!");
-        }
-    
-        else if(button.id == "rock" && getComputerChoice() == "scissors"){
-            console.log("You Rock! Rock beats Scissors");
-        }
-    
-        else if(button.id == "paper" && getComputerChoice() == "paper"){
-            console.log("Paper Draw!");
-        }
-    
-        else if(button.id == "paper" && getComputerChoice() == "rock"){
-            console.log("That's a Wrap! Paper beats Rock");
-        }
-    
-        else if(button.id == "paper" && getComputerChoice() == "scissors"){
-            console.log("You Lose! Scissors beats Paper");
-        }
-    
-        else if(button.id == "scissors" && getComputerChoice() == "paper"){
-            console.log("Cut! Scissors beats Paper");
-        }
-    
-        else if(button.id == "scissors" && getComputerChoice() == "rock"){
-            console.log("You Lose! Rock beats Scissors");
-        }
-    
-        else if (button.id == "scissors" && getComputerChoice() == "scissors"){
-            console.log("Scissors Draw!");
-        }
-        else{
-            console.log("Invalid Choice! You Lose!"); 
-            console.log(button.id);
-            console.log(getComputerChoice());
-            }
-            
-    });
-});
-
 
 
