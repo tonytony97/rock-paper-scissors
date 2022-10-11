@@ -56,20 +56,21 @@ function playRound(playerSelect,computerSelect) {
         alert("Something went wrong...")
         console.log(playerSelect);
         console.log(getComputerChoice());
-        }
+    }
     return result;
 };
 
-
+let playerPoints = 0;
+let compPoints = 0;
 
 const container = document.querySelector('#container');
 
 const div = document.createElement('div');
 const playerScore = document.createElement('p');
-playerScore.textContent = 'Player: ';
+playerScore.textContent = 'Player: '+ playerPoints;
 
 const compScore = document.createElement('p');
-compScore.textContent = 'Computer: ';
+compScore.textContent = 'Computer: '+ compPoints;
 
 const result = document.createElement('h3');
 result.textContent= 'Match Results: '
@@ -77,11 +78,37 @@ result.textContent= 'Match Results: '
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) =>{
     button.addEventListener('click',function (){
-        let win = 0;
-        let lose = 0;
-        playRound(button.id,getComputerChoice());
-        result.textContent= 'Match Results: '+ playRound(button.id,getComputerChoice());
+        
+        const roundResults = playRound(button.id,getComputerChoice());
 
+        if(roundResults == "You Rock! Rock beats Scissors" || 
+        roundResults == "That's a Wrap! Paper beats Rock" || 
+        roundResults == "Cut! Scissors beats Paper")
+        {
+            playerPoints += 1;
+        }
+
+        else if(roundResults == "You Lose! Paper beats Rock" ||
+         roundResults == "You Lose! Scissors beats Paper" ||
+          roundResults == "You Lose! Rock beats Scissors")
+        {
+            compPoints += 1;
+        }
+
+        playerScore.textContent = 'Player: '+ playerPoints ;
+        compScore.textContent = 'Computer: '+ compPoints;
+        result.textContent= 'Match Results: '+ roundResults;
+
+        if (playerPoints == 5){
+            result.textContent = 'Match Results: The Player WINS!';
+            playerPoints = 0;
+            compPoints = 0;
+        } 
+        else if(compPoints == 5){
+            result.textContent= 'Match Results: The Computer WINS!';
+            playerPoints = 0;
+            compPoints = 0;
+        }
     });
 });
 
